@@ -6,13 +6,13 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 11:07:53 by hkubo             #+#    #+#             */
-/*   Updated: 2020/11/28 19:39:36 by hkubo            ###   ########.fr       */
+/*   Updated: 2021/06/05 17:42:41 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		digit_size(int number)
+static	int	digit_size(int number)
 {
 	int		count;
 
@@ -27,7 +27,19 @@ static	int		digit_size(int number)
 	return (count);
 }
 
-char			*ft_itoa(int n)
+char	*make_word(char *ans, int len, int n)
+{
+	ans[len] = '\0';
+	len--;
+	while (len >= 0)
+	{
+		ans[len--] = '0' + (n % 10);
+		n = n / 10;
+	}
+	return (ans);
+}
+
+char	*ft_itoa(int n)
 {
 	int		len;
 	char	flag;
@@ -36,7 +48,8 @@ char			*ft_itoa(int n)
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	len = digit_size(n);
-	if (!(ans = (char *)malloc(sizeof(char) * (len + 1))))
+	ans = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ans)
 		return (NULL);
 	flag = '+';
 	if (n < 0)
@@ -44,13 +57,7 @@ char			*ft_itoa(int n)
 		n = n * (-1);
 		flag = '-';
 	}
-	ans[len] = '\0';
-	len--;
-	while (len >= 0)
-	{
-		ans[len--] = '0' + (n % 10);
-		n = n / 10;
-	}
+	make_word(ans, len, n);
 	if (flag == '-')
 		ans[0] = '-';
 	return (ans);
