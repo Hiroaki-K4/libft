@@ -6,6 +6,9 @@ projects.
 Through this project, we also give you the opportunity to expand the list of functions
 with your own. Take the time to expand your libft throughout the year.
 
+<br>
+
+# My score
 ![libft](https://user-images.githubusercontent.com/51109408/115115616-63203080-9fd0-11eb-8a1f-acaa9576fb16.png)
 
 <br>
